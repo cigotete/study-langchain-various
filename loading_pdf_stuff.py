@@ -3,6 +3,7 @@ from langchain.chains.llm import LLMChain
 from langchain.chains.combine_documents.stuff import StuffDocumentsChain
 from langchain_openai import OpenAI, ChatOpenAI
 from langchain_community.document_loaders import PyPDFLoader
+from langchain.callbacks import get_openai_callback
 
 from langchain_core.prompts import ChatPromptTemplate
 
@@ -33,5 +34,10 @@ stuff_chain = StuffDocumentsChain(
   document_variable_name="text"
 )
 
-response = stuff_chain.invoke({"input_documents": docs, "question": question})
-print(response['output_text'])
+with get_openai_callback() as cb:
+  response = stuff_chain.invoke({"input_documents": docs, "question": question})
+  print(response['output_text'])
+  print(f"Total Tokens: {cb.total_tokens}")
+  print(f"Prompt Tokens: {cb.prompt_tokens}")
+  print(f"Completion Tokens: {cb.completion_tokens}")
+  print(f"Total Cost (USD): ${cb.total_cost}")
