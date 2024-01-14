@@ -8,7 +8,6 @@ from langchain.callbacks import get_openai_callback
 
 from langchain_core.prompts import ChatPromptTemplate
 
-question = input("Enter question: ")
 prompt = ChatPromptTemplate.from_messages([
     ("system", "You are world class technical documentation reader."),
     ("user", """Given the following extracted parts of a document and a question,
@@ -22,6 +21,7 @@ pdf_file_path = "./pdf_files/pdf-demo.pdf"
 pdf_loader = PyPDFLoader(pdf_file_path)
 docs = pdf_loader.load_and_split()
 
+question = input("Enter question: ")
 print(f"Time: {datetime.datetime.now()}")
 print(f"File: {pdf_file_path}")
 
