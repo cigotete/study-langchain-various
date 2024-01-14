@@ -1,4 +1,5 @@
 import os
+import datetime
 from langchain.chains.llm import LLMChain
 from langchain.chains.combine_documents.stuff import StuffDocumentsChain
 from langchain_openai import OpenAI, ChatOpenAI
@@ -21,6 +22,9 @@ pdf_file_path = "./pdf_files/pdf-demo.pdf"
 pdf_loader = PyPDFLoader(pdf_file_path)
 docs = pdf_loader.load_and_split()
 
+print(f"Time: {datetime.datetime.now()}")
+print(f"File: {pdf_file_path}")
+
 # Define LLM chain
 llm = ChatOpenAI(
   temperature=0.1,
@@ -37,6 +41,8 @@ stuff_chain = StuffDocumentsChain(
 with get_openai_callback() as cb:
   response = stuff_chain.invoke({"input_documents": docs, "question": question})
   print(response['output_text'])
+  print(f"Time: {datetime.datetime.now()}")
+  print(f"File: {pdf_file_path}")
   print(f"Total Tokens: {cb.total_tokens}")
   print(f"Prompt Tokens: {cb.prompt_tokens}")
   print(f"Completion Tokens: {cb.completion_tokens}")
