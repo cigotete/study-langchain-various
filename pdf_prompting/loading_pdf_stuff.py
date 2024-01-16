@@ -17,7 +17,7 @@ QUESTION: {question}
 Content: {text}""")
 ])
 
-pdf_file_path = "./pdf_files/pdf-demo.pdf"
+pdf_file_path = "./pdf_prompting/pdf_files/pdf-demo.pdf"
 pdf_loader = PyPDFLoader(pdf_file_path)
 docs = pdf_loader.load_and_split()
 
