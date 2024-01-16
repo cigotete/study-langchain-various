@@ -20,7 +20,7 @@
       "console": "integratedTerminal",
       "justMyCode": true,
       "envFile": "${workspaceFolder}/.env",
-      "args": ["run", "${workspaceFolder}/agents_ui.py"]
+      "args": ["run", "${workspaceFolder}/agents/agents_ui.py"]
     }
   ]
 }
