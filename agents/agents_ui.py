@@ -1,6 +1,6 @@
 import streamlit as st
 from langchain.callbacks import StreamlitCallbackHandler
-from agents_basics import load_agent
+from agents.agents_basics import load_agent
 
 chain = load_agent()
 st_callback = StreamlitCallbackHandler(st.container())
